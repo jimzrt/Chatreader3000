@@ -6,8 +6,8 @@ height: 100%; }
 .footer { position: absolute; bottom: 0; width: 100%;  /* Set the fixed height of the footer here */ height: 60px; background-color: #999999; }
 #left, #right { height: 100%; overflow-y: auto; }
 #right {padding-right: 0px;}
-#searchInput {
-    background-image: url('/img/searchicon.png'); /* Add a search icon to input */
+.searchInput {
+    background-image: url('../img/searchicon.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
@@ -17,7 +17,14 @@ height: 100%; }
     margin-bottom: 5px; /* Add some space below the input */
     margin-top: 5px;
 }
-
+#toggleButton{
+  min-width: 100%
+}
+#toggleButton:focus, #toggleButton:active {
+      background-color: #fff;
+   box-shadow: none;
+   outline: none;
+}
 /* Custom page CSS
 -------------------------------------------------- */
 label { margin-bottom: 0px;}
@@ -26,8 +33,8 @@ body > .container-fluid { padding-top: 50px; }
 .container-fluid .col-sm-6 { padding: 0; }
 .navbar { margin-bottom: 0; }
 .main-content { background: #efefef; padding: 0px; height: calc(100vh - 50px); }
-.whatsapp_bg { width: 100%; height: 100%; background: url(/img/whatsapp_logo.png) center center no-repeat; }
-.facebook_bg { width: 100%; height: 100%; background: url(/img/facebook_logo.png) center center no-repeat; }
+.whatsapp_bg { width: 100%; height: 100%; background: url(../img/whatsapp_logo.png) center center no-repeat; }
+.facebook_bg { width: 100%; height: 100%; background: url(../img/facebook_logo.png) center center no-repeat; }
 img.emoji { height: 1.5em; width: 1.5em; margin: 0 .05em 0 .1em; vertical-align: -0.1em; }
 #toggleButton { display: none; }
 @media (max-width:991px) {
@@ -71,4 +78,10 @@ font: 0/0 a; color: transparent; text-shadow: none; background-color: transparen
 @keyframes spinner {
   0% { -webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+.row div {
+    -webkit-transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+    -moz-transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+    -o-transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+    transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
 }

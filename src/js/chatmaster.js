@@ -16,11 +16,11 @@ $(document).on('change', '#decryptCheckbox', function() {
   }
 });
 
-function filterConversation() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("searchInput");
+function filterConversation(input) {
+  var filter, table, tr, td, i;
+  //input = document.getElementById("searchInput");
   filter = input.value.toUpperCase();
-  table = document.getElementById("conversationTable");
+  table = $(input).siblings('table').get(0);
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
@@ -44,12 +44,18 @@ function showError(message) {
 }
 
 function showWhatsappDialog() {
-  $("#left").load("leftSnippet.html", function() {
+  $('#left').removeClass().addClass('hidden-xs hidden-sm hidden-md hidden-lg');
+  $('#left').html("");
+  $('#right').removeClass().addClass('col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2');
+
+
+
+  $("#right").load("infoSnippet.html", function() {
   $(":file").jfilestyle({
     'theme': 'green'
   });
 });
-  $("#right").html('<div class="whatsapp_bg"></div>');
+ // $("#right").html('<div class="whatsapp_bg"></div>');
 
 
 }
@@ -185,8 +191,10 @@ function loadWhatsappInput() {
       processWhatsapp();
       if (shouldDownload) {
         saveByteArray("msgstore.db", msgstore.export());
-
       }
+
+      $("#left").removeClass().addClass('col-md-4 col-sm-10 col-xs-10');
+      $("#right").removeClass().addClass('col-md-8 col-sm-2 col-xs-2');
     }
 
     $(".loading").hide();
@@ -246,10 +254,6 @@ function findWhatsappName(id) {
 
 function processWhatsapp() {
 
-  if (!msgstore) {
-    return;
-  }
-
   var conversations = [];
   var sql = msgstore.exec('select key_remote_jid, count(*), max(timestamp) from messages where data != "NULL" group by key_remote_jid HAVING COUNT(*) > 1 order by timestamp desc');
   if (sql[0]) {
@@ -284,7 +288,8 @@ function processWhatsapp() {
 
 function loadWhatsapp(conversations) {
 
-  var table = '<button id="toggleButton" class="btn btn-primary" onclick="change_width()"><-></button>';
+  var table = '<button id="toggleButton" class="btn btn-default" onclick="change_width()"><<</button>';
+  table +='<input type="text" class="searchInput" onkeyup="filterConversation(this)" placeholder="Filter..">'
   table += '<table class="table table-striped">';
   conversations.forEach(function(conv) {
     table += '<tr><td onclick=\'showWhatsappConveration("' + conv["id"] + '")\' style="cursor: pointer;"><a>' + conv["sender"] + '</a></td><td><span class=badge badge-pill badge-primary">' + conv["msg_count"] + '</span></td><td>' + conv["time"] + '</td></tr>';
@@ -363,7 +368,7 @@ function showWhatsappConveration(id) {
     complete: function() {
 
       var conversations = getWhatsappConversation(id);
-      var table = '<input type="text" id="searchInput" onkeyup="filterConversation()" placeholder="Filter..">'
+      var table = '<input type="text" class="searchInput" onkeyup="filterConversation(this)" placeholder="Filter..">';
       table += '<table class="table table-striped" id="conversationTable">';
       conversations.forEach(function(msg) {
         if (msg["from_me"] == 1) {
@@ -388,9 +393,11 @@ function showWhatsappConveration(id) {
 
 function change_width() {
   if ($("#left").hasClass("col-sm-10")) {
+    $("#toggleButton").text(">>");
     $("#left").removeClass("col-sm-10 col-xs-10").addClass("col-sm-2 col-xs-2");
     $("#right").removeClass("col-sm-2 col-xs-2").addClass("col-sm-10 col-xs-10");
   } else {
+    $("#toggleButton").text("<<");
     $("#left").removeClass("col-sm-2 col-xs-2").addClass("col-sm-10 col-xs-10");
     $("#right").removeClass("col-sm-10 col-xs-10").addClass("col-sm-2 col-xs-2");
   }
