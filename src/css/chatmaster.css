@@ -7,7 +7,7 @@ height: 100%; }
 #left, #right { height: 100%; overflow-y: auto; }
 #right {padding-right: 0px;}
 #searchInput {
-    background-image: url('searchicon.png'); /* Add a search icon to input */
+    background-image: url('/img/searchicon.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
@@ -26,8 +26,8 @@ body > .container-fluid { padding-top: 50px; }
 .container-fluid .col-sm-6 { padding: 0; }
 .navbar { margin-bottom: 0; }
 .main-content { background: #efefef; padding: 0px; height: calc(100vh - 50px); }
-.whatsapp_bg { width: 100%; height: 100%; background: url(../img/whatsapp_logo.png) center center no-repeat; }
-.facebook_bg { width: 100%; height: 100%; background: url(../img/facebook_logo.png) center center no-repeat; }
+.whatsapp_bg { width: 100%; height: 100%; background: url(/img/whatsapp_logo.png) center center no-repeat; }
+.facebook_bg { width: 100%; height: 100%; background: url(/img/facebook_logo.png) center center no-repeat; }
 img.emoji { height: 1.5em; width: 1.5em; margin: 0 .05em 0 .1em; vertical-align: -0.1em; }
 #toggleButton { display: none; }
 @media (max-width:991px) {

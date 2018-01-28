@@ -1,8 +1,10 @@
 var msgstore;
 var wa;
-showWhatsappDialog();
+$( document ).ready(function() {
+    showWhatsappDialog();
+});
 
-$("#left").on('change', '#decryptCheckbox', function() {
+$(document).on('change', '#decryptCheckbox', function() {
   if (this.checked) {
     $(".downloadBlock").show();
     $(".keyBlock").show();
@@ -42,12 +44,14 @@ function showError(message) {
 }
 
 function showWhatsappDialog() {
-  $("#left").html('<h2>Whatsapp</h2><p>To read your messages you will need the msgstore.db file found in /data/data/com.whatsapp/files/databases. To display your contact names you need the wa.db file found in the same folder. You need root to access that location.<br><br>If you don\'t have root you can use the msgstore.db.crypt12 file located in you WhatsApp folder on your sdcard and your key file. (You can get your key via <a href="https://forum.xda-developers.com/showthread.php?t=2770982">WhatsApp Key/DB Extractor</a>).<br>There is no way to decrypt without the key file!<br><br>Your files are processed locally with javascript, nothing is sent to the server! So it will work offline.</p><hr><label><input type="checkbox" id="decryptCheckbox"> <strong>Decrypt .crypt12</strong></label><div class="downloadBlock" style="display:none"><br><label><input type="checkbox" id="downloadCheckbox"> <strong>Download decrypted msgstore</strong></label></div><hr><div class="form-group"><label><span id="msgstoreLabel">msgstore.db:</span> <input type="file" id="whatsappCryptFile"></label><div class="keyBlock" style="display:none"><br><label>Key file: <input type="file" id="whatsappKeyFile"></label></div><br><label>wa.db: <small>(optional)</small> <input type="file" id="whatsappWaFile"></label><br><button class="btn btn-success" onclick="loadWhatsappInput()">Process</button></div><div id="error"></div>');
-  $("#right").html('<div class="whatsapp_bg"></div>');
-
+  $("#left").load("leftSnippet.html", function() {
   $(":file").jfilestyle({
     'theme': 'green'
   });
+});
+  $("#right").html('<div class="whatsapp_bg"></div>');
+
+
 }
 
 function validateWA() {

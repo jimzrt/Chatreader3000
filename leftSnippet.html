@@ -1,0 +1,69 @@
+<h2>Whatsapp</h2>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+      Readme</a>
+      </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">To read your messages you will need the msgstore.db file found in /data/data/com.whatsapp/files/databases. To display your contact names you need the wa.db file found in the same folder. You need root to access that location.
+                <br>
+                <br>If you don\'t have root you can use the msgstore.db.crypt12 file located in you WhatsApp folder on your sdcard and your key file. (You can get your key via <a href="https://forum.xda-developers.com/showthread.php?t=2770982">WhatsApp Key/DB Extractor</a>).
+                <br>There is no way to decrypt without the key file!
+                <br>
+                <br>Your files are processed locally with javascript, nothing is sent to the server! So it will work offline.</div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+      Tools and Links</a>
+      </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body"><b>Libraries used:</b>
+                <ul>
+                    <li><a href="https://github.com/jquery/jquery">jQuery<a/></li>
+                    <li><a href="https://github.com/markusslima/jquery-filestyle">jquery-filestyle</a></li>
+                    <li><a href="https://github.com/jacwright/date.format">date.format</a></li>
+                    <li><a href="https://github.com/twbs/bootstrap">bootstrap</a></li>
+                    <li><a href="https://github.com/twitter/twemoji">twemoji</a> - Emoticons support</li>
+                    <li><a href="https://github.com/kripken/sql.js/">sql.js</a> - SQLite implementation in Javascript</li>
+                    <li><a href="https://github.com/bitwiseshiftleft/sjcl">sjcl</a> - Stanford Javascript Crypto Library</li>
+                    <li><a href="https://github.com/nodeca/pako">pako</a> - zib port to javascript</li>
+                </ul>
+                <a href="https://github.com/jimzrt/Chatreader3000">Chatreader3000 on github</a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<label>
+    <input type="checkbox" id="decryptCheckbox"> <strong>Decrypt .crypt12</strong></label>
+<div class="downloadBlock" style="display:none">
+    <br>
+    <label>
+        <input type="checkbox" id="downloadCheckbox"> <strong>Download decrypted msgstore</strong></label>
+</div>
+<hr>
+<div class="form-group">
+    <label><span id="msgstoreLabel">msgstore.db:</span>
+        <input type="file" id="whatsappCryptFile">
+    </label>
+    <div class="keyBlock" style="display:none">
+        <br>
+        <label>Key file:
+            <input type="file" id="whatsappKeyFile">
+        </label>
+    </div>
+    <br>
+    <label>wa.db: <small>(optional)</small>
+        <input type="file" id="whatsappWaFile">
+    </label>
+    <br>
+    <button class="btn btn-success" onclick="loadWhatsappInput()">Process</button>
+</div>
+<div id="error"></div>
