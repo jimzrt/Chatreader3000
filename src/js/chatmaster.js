@@ -18,7 +18,6 @@ $(document).on('change', '#decryptCheckbox', function() {
 
 function filterConversation(input) {
   var filter, table, tr, td, i;
-  //input = document.getElementById("searchInput");
   filter = input.value.toUpperCase();
   table = $(input).siblings('table').get(0);
   tr = table.getElementsByTagName("tr");
@@ -48,14 +47,11 @@ function showWhatsappDialog() {
   $('#left').html("");
   $('#right').removeClass().addClass('col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2');
 
-
-
   $("#right").load("infoSnippet.html", function() {
   $(":file").jfilestyle({
     'theme': 'green'
   });
 });
- // $("#right").html('<div class="whatsapp_bg"></div>');
 
 
 }
@@ -193,8 +189,6 @@ function loadWhatsappInput() {
         saveByteArray("msgstore.db", msgstore.export());
       }
 
-      $("#left").removeClass().addClass('col-md-4 col-sm-10 col-xs-10');
-      $("#right").removeClass().addClass('col-md-8 col-sm-2 col-xs-2');
     }
 
     $(".loading").hide();
@@ -298,6 +292,8 @@ function loadWhatsapp(conversations) {
 
   $("#left").html(table);
   $("#right").html('<div class="whatsapp_bg"></div>');
+        $("#left").removeClass().addClass('col-md-4 col-sm-10 col-xs-10');
+      $("#right").removeClass().addClass('col-md-8 col-sm-2 col-xs-2');
 
   if (typeof twemoji != "undefined") {
     twemoji.parse(document.body);
